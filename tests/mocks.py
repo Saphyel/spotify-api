@@ -4,6 +4,10 @@ class MockResponse:
         self._content = result
 
     @property
+    def ok(self) -> bool:
+        return True
+
+    @property
     def text(self) -> str:
         return 'error'
 
