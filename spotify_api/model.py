@@ -92,3 +92,22 @@ class Track:
     album: Album = None
     popularity: int = None
     external_ids: dict = None
+
+
+@dataclass(order=True)
+class Playlist:
+    id: str
+    collaborative: bool
+    description: str
+    external_urls: dict
+    followers: dict
+    href: str
+    name: str
+    owner: dict
+    primary_color: any
+    public: bool
+    snapshot_id: str
+    uri: str
+    type: str
+    images: list = None
+    tracks: list = None

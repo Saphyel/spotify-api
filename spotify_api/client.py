@@ -1,8 +1,10 @@
-from spotify_api.model import Track, Album, Artist, Client
+import os
+
+from spotify_api.model import Track, Album, Artist, Client, Playlist
 from spotify_api.repository import SpotifyRepository, OauthRepository
-from spotify_api.service import TokenService, TrackService, AlbumService, ArtistService
+from spotify_api.service import TokenService, TrackService, AlbumService, ArtistService, PlaylistService
 from spotify_api.transformer import TrackTransformer, ArtistTransformer, AlbumTransformer, ClientTransformer, \
-    TokenTransformer
+    TokenTransformer, PlaylistTransformer
 
 
 class Spotify:
@@ -13,13 +15,16 @@ class Spotify:
         return self.auth.get_access_token()
 
     def get_track(self, track_id: str) -> Track:
-        return TrackService(SpotifyRepository(), TrackTransformer).get_one(track_id, self.auth.get_access_token())
+        return TrackService(SpotifyRepository(), TrackTransformer).get_one(track_id, self.get_token())
 
     def get_album(self, album_id: str) -> Album:
-        return AlbumService(SpotifyRepository(), AlbumTransformer).get_one(album_id, self.auth.get_access_token())
+        return AlbumService(SpotifyRepository(), AlbumTransformer).get_one(album_id, self.get_token())
 
     def get_artist(self, artist_id: str) -> Artist:
-        return ArtistService(SpotifyRepository(), ArtistTransformer).get_one(artist_id, self.auth.get_access_token())
+        return ArtistService(SpotifyRepository(), ArtistTransformer).get_one(artist_id, self.get_token())
+
+    def get_playlist(self, playlist_id: str) -> Playlist:
+        return PlaylistService(SpotifyRepository(), PlaylistTransformer).get_one(playlist_id, self.get_token())
 
 
 class SpotifyClientCredentials:
