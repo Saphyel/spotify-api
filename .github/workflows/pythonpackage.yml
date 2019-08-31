@@ -9,7 +9,7 @@ jobs:
     container:
       image: python:3.7-alpine
       volumes:
-        - ./:/opt/project
+        - my_docker_volume:/opt/project
       options: --cpus 1
     steps:
       - uses: actions/checkout@v1
@@ -30,7 +30,7 @@ jobs:
     container:
       image: python:3.7-alpine
       volumes:
-        - ./:/opt/project
+        - my_docker_volume:/opt/project
       options: --cpus 1
     steps:
       - uses: actions/checkout@v1
