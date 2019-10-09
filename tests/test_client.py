@@ -1,7 +1,7 @@
 from unittest.mock import patch
 
 from spotify_api.client import spotify_builder
-from spotify_api.model import Track, Album, Artist, Image, Playlist
+from spotify_api.model import Track, Album, Artist, Image, Playlist, AudioFeatures
 
 from tests.mocks import MockResponse
 
@@ -21,6 +21,13 @@ class TestSpotify:
         result = spotify_builder('id-lol', 'secret').get_track('5dPRMnwZ7CeQF4oolO8lYo')
         assert result == Track(id='5dPRMnwZ7CeQF4oolO8lYo', name='Sick Individual', external_urls={'spotify': 'https://open.spotify.com/track/5dPRMnwZ7CeQF4oolO8lYo'}, href='https://api.spotify.com/v1/tracks/5dPRMnwZ7CeQF4oolO8lYo', uri='spotify:track:5dPRMnwZ7CeQF4oolO8lYo', type='track', duration_ms=207666, preview_url='https://p.scdn.co/mp3-preview/bd4661b82bf4026f7b1a930d3efcf82824c94b08?cid=ba9301fa1fb64a4bad263047243beef4', available_markets=['ES','GB'], explicit=True, track_number=3, disc_number=1, artists=[Artist(id='6om12Ev5ppgoMy3OYSoech', name='Halestorm', external_urls={'spotify': 'https://open.spotify.com/artist/6om12Ev5ppgoMy3OYSoech'}, href='https://api.spotify.com/v1/artists/6om12Ev5ppgoMy3OYSoech', uri='spotify:artist:6om12Ev5ppgoMy3OYSoech', type='artist')], is_local=False, album=Album(id='6jPjpEJBxT0HN71TAEohZ0', name='Into The Wild Life (Deluxe)', external_urls={'spotify': 'https://open.spotify.com/album/6jPjpEJBxT0HN71TAEohZ0'}, href='https://api.spotify.com/v1/albums/6jPjpEJBxT0HN71TAEohZ0', uri='spotify:album:6jPjpEJBxT0HN71TAEohZ0', type='album', available_markets=['ES','GB'], images=[Image(url='https://i.scdn.co/image/168d56d2615587c0f64a7357b94bd7e985fc52b4', height=640, width=640), Image(url='https://i.scdn.co/image/151e20dee06ace62b90bb970291cc59487552637', height=64, width=64)], total_tracks=15, release_date='2015-04-10', release_date_precision='day', artists=[Artist(id='6om12Ev5ppgoMy3OYSoech', name='Halestorm', external_urls={'spotify': 'https://open.spotify.com/artist/6om12Ev5ppgoMy3OYSoech'}, href='https://api.spotify.com/v1/artists/6om12Ev5ppgoMy3OYSoech', uri='spotify:artist:6om12Ev5ppgoMy3OYSoech', type='artist')], album_type='album'), popularity=43, external_ids={'isrc': 'USAT21405457'})
         mock_requests.assert_called_once()
+
+    def test_audio_feature(self, mock_requests, mock_oauth, audio_feature_fixture: dict) -> None:
+        mock_requests.return_value = MockResponse(200, audio_feature_fixture)
+        result = spotify_builder('id-lol', 'secret').get_audio_features('5dPRMnwZ7CeQF4oolO8lYo')
+        assert result == AudioFeatures(id='5dPRMnwZ7CeQF4oolO8lYo', type='audio_features', uri='spotify:track:5dPRMnwZ7CeQF4oolO8lYo', duration_ms=207667, danceability=0.576, energy=0.959, key=4, loudness=-2.397, mode=0, speechiness=0.0855, acousticness=0.00651, instrumentalness=2.25e-05, liveness=0.324, valence=0.573, tempo=95.047, track_href='https://api.spotify.com/v1/tracks/5dPRMnwZ7CeQF4oolO8lYo', analysis_url='https://api.spotify.com/v1/audio-analysis/5dPRMnwZ7CeQF4oolO8lYo', time_signature=4)
+        mock_requests.assert_called_once()
+
 
     def test_album(self, mock_requests, mock_oauth, album_fixture: dict) -> None:
         mock_requests.return_value = MockResponse(200, album_fixture)

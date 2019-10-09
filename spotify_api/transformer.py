@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from spotify_api.model import Track, Image, Album, Artist, Token, Client, Playlist
+from spotify_api.model import Track, Image, Album, Artist, Token, Client, Playlist, AudioFeatures
 
 
 class Transformer:
@@ -54,6 +54,12 @@ class TrackTransformer(Transformer):
         json['artists'] = [ArtistTransformer.transform(artist) for artist in json['artists']]
 
         return Track(**json)
+
+
+class AudioFeaturesTransformer(Transformer):
+    @staticmethod
+    def transform(json: dict) -> AudioFeatures:
+        return AudioFeatures(**json)
 
 
 class PlaylistTransformer(Transformer):
