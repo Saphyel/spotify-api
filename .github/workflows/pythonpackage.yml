@@ -15,6 +15,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: Install dependencies
         run: |
+          apk add --no-cache --no-progress -q git
           pip install --no-color -q poetry
           poetry config settings.virtualenvs.create false
           poetry install --no-dev --no-ansi -qn
@@ -38,6 +39,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: Install dependencies
         run: |
+          apk add --no-cache --no-progress -q git
           pip install --no-color -q poetry
           poetry config settings.virtualenvs.create false
           poetry install --no-ansi -qn

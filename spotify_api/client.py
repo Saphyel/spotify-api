@@ -1,7 +1,5 @@
 __strict__ = True
 
-import os
-
 from spotify_api.model import Track, Album, Artist, Client, Playlist, AudioFeatures
 from spotify_api.repository import SpotifyRepository, OauthRepository
 from spotify_api.service import TokenService, TrackService, AlbumService, ArtistService, PlaylistService, \
