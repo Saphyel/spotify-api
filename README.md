@@ -12,11 +12,12 @@ Getting Started
 ### Installing
 Inside of the container or in your local machine
 
-    pip install -r requirements.txt
+    poetry install
 
 ### Built With
 * Python 3.7
-* Pip
+* [Poetry][poetry-link]
+* [Requests][requests-link]
 
 ### Tests
 Inside of the container or in your local machine
@@ -28,3 +29,5 @@ License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
 
 [spotify-keys]: https://developer.spotify.com/dashboard/applications
+[poetry-link]: https://poetry.eustace.io/docs/#installation
+[requests-link]: https://requests.kennethreitz.org/en/master/
