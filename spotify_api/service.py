@@ -1,4 +1,4 @@
-from spotify_api.model import Track, Artist, Album, Client, Playlist
+from spotify_api.model import Track, Artist, Album, Client, Playlist, AudioFeatures
 from spotify_api.repository import SpotifyRepository, OauthRepository
 from spotify_api.transformer import Transformer
 
@@ -46,6 +46,15 @@ class TrackService:
         return self.transformer.transform(self.repository.get_response('tracks/' + track_id, token))
 
 
+class AudioFeaturesService:
+    def __init__(self, repository: SpotifyRepository, transformer: Transformer):
+        self.repository = repository
+        self.transformer = transformer
+
+    def get_one(self, track_id: str, token: str) -> AudioFeatures:
+        return self.transformer.transform(self.repository.get_response('audio-features/' + track_id, token))
+
+
 class PlaylistService:
     def __init__(self, repository: SpotifyRepository, transformer: Transformer):
         self.repository = repository
@@ -53,4 +62,3 @@ class PlaylistService:
 
     def get_one(self, playlist_id: str, token: str) -> Playlist:
         return self.transformer.transform(self.repository.get_response('playlists/' + playlist_id, token))
-

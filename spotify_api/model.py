@@ -39,11 +39,11 @@ class Image:
 @dataclass(order=True)
 class Album:
     id: str
+    type: str
+    uri: str
     name: str
     external_urls: dict
     href: str
-    uri: str
-    type: str
     available_markets: List[str]
     images: list
     total_tracks: int
@@ -62,11 +62,11 @@ class Album:
 @dataclass(order=True)
 class Artist:
     id: str
+    type: str
+    uri: str
     name: str
     external_urls: dict
     href: str
-    uri: str
-    type: str
     images: list = None
     popularity: int = None
     followers: list = None
@@ -76,12 +76,12 @@ class Artist:
 @dataclass(order=True)
 class Track:
     id: str
+    type: str
+    uri: str
+    duration_ms: int
     name: str
     external_urls: dict
     href: str
-    uri: str
-    type: str
-    duration_ms: int
     preview_url: str
     available_markets: List[str]
     explicit: bool
@@ -95,8 +95,33 @@ class Track:
 
 
 @dataclass(order=True)
+class AudioFeatures:
+    id: str
+    type: str
+    uri: str
+    duration_ms: int
+    danceability: float
+    energy: float
+    key: int
+    loudness: float
+    mode: int
+    speechiness: float
+    acousticness: float
+    instrumentalness: float
+    liveness: float
+    valence: float
+    tempo: float
+    track_href: str
+    analysis_url: str
+    analysis_url: str
+    time_signature: int
+
+
+@dataclass(order=True)
 class Playlist:
     id: str
+    type: str
+    uri: str
     collaborative: bool
     description: str
     external_urls: dict
@@ -107,7 +132,5 @@ class Playlist:
     primary_color: any
     public: bool
     snapshot_id: str
-    uri: str
-    type: str
     images: list = None
     tracks: list = None
