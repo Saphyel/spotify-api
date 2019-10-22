@@ -1,3 +1,5 @@
+__strict__ = True
+
 from dataclasses import dataclass
 
 from spotify_api.model import Track, Image, Album, Artist, Token, Client, Playlist, AudioFeatures
