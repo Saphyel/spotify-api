@@ -1,3 +1,5 @@
+__strict__ = True
+
 import base64
 import time
 from dataclasses import dataclass, field

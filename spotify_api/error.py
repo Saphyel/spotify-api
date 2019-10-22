@@ -1,3 +1,6 @@
+__strict__ = True
+
+
 class SpotifyOauthError(Exception):
     pass
 

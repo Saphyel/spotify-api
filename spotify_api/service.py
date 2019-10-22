@@ -1,3 +1,5 @@
+__strict__ = True
+
 from spotify_api.model import Track, Artist, Album, Client, Playlist, AudioFeatures
 from spotify_api.repository import SpotifyRepository, OauthRepository
 from spotify_api.transformer import Transformer

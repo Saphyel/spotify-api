@@ -1,3 +1,5 @@
+__strict__ = True
+
 import requests
 
 from spotify_api.error import SpotifyOauthError, SpotifyRepositoryError
